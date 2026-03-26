@@ -25,7 +25,7 @@ const Contact = () => {
     const body = encodeURIComponent(
       `Name: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
     );
-    const mailtoLink = `mailto:rkengineering053@gmail.com?subject=${subject}&body=${body}`;
+    const mailtoLink = `mailto:support@rkengineering.pk?subject=${subject}&body=${body}`;
     
     // Open default email client
     window.location.href = mailtoLink;
@@ -49,9 +49,9 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      details: "rkengineering053@gmail.com",
+      details: "support@rkengineering.pk",
       subdetails: "We reply within 24hrs",
-      link: "mailto:rkengineering053@gmail.com",
+      link: "mailto:support@rkengineering.pk",
     },
   ];
 
