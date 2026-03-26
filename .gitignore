@@ -52,6 +52,7 @@ yarn.lock
 
 # Claude Code
 .claude
+claude/
 
 # OG image source (PNG in public/ is the output)
 og-image.svg
