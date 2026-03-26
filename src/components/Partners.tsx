@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Shield, Award, Building2, CheckCircle } from "lucide-react";
+import { Shield, Award, Building2, CheckCircle, Wheat } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Partners = () => {
@@ -34,12 +34,17 @@ const Partners = () => {
           <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-semibold">
             Trust & Compliance
           </Badge>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-6 tracking-tight">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl text-foreground mb-4 tracking-wide">
             Government Programs &
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-primary mt-3">
               Institutional Partnerships
             </span>
           </h2>
+          <div className="flex items-center justify-center gap-4 my-8">
+            <div className="h-px w-16 bg-border" />
+            <Wheat className="w-6 h-6 text-secondary" />
+            <div className="h-px w-16 bg-border" />
+          </div>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Executing projects under major government initiatives and serving 
             institutional clients across Pakistan with proven reliability.
@@ -91,7 +96,7 @@ const Partners = () => {
               { value: "40+", label: "Cold Storage Units" },
             ].map((stat, idx) => (
             <div key={idx} className="text-center animate-scale-in" style={{ animationDelay: `${idx * 0.1}s` }}>
-              <div className="text-5xl font-bold text-primary mb-2">{stat.value}</div>
+              <div className="stat-counter text-primary mb-2">{stat.value}</div>
               <div className="text-sm text-muted-foreground">{stat.label}</div>
             </div>
           ))}

@@ -91,7 +91,7 @@ const Contact = () => {
               >
                 <Card
                   className="p-6 bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg group cursor-pointer"
-                  onClick={() => info.link && window.open(info.link, info.link.startsWith('tel:') || info.link.startsWith('mailto:') ? '_self' : '_blank')}
+                  onClick={() => info.link && window.open(info.link, info.link.startsWith('tel:') || info.link.startsWith('mailto:') ? '_self' : '_blank', 'noopener,noreferrer')}
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
@@ -122,7 +122,7 @@ const Contact = () => {
             >
               <Card
                 className="p-6 bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg group cursor-pointer"
-                onClick={() => window.open('https://wa.me/923097580000?text=Hello%2C%20I%27m%20interested%20in%20RK%20Engineering%20products.%20Please%20provide%20more%20information.', '_blank')}
+                onClick={() => window.open('https://wa.me/923097580000?text=Hello%2C%20I%27m%20interested%20in%20RK%20Engineering%20products.%20Please%20provide%20more%20information.', '_blank', 'noopener,noreferrer')}
               >
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
@@ -130,7 +130,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-card-foreground mb-1 group-hover:text-primary transition-colors">WhatsApp Us</h3>
-                    <a href="https://wa.me/923097580000" className="text-sm text-card-foreground font-medium hover:text-primary transition-colors">
+                    <a href="https://wa.me/923097580000" rel="noopener noreferrer" className="text-sm text-card-foreground font-medium hover:text-primary transition-colors">
                       03097580000
                     </a>
                     <p className="text-xs text-muted-foreground mt-1">Quick Response</p>
@@ -147,7 +147,7 @@ const Contact = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <Card className="overflow-hidden border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg group cursor-pointer"
-                onClick={() => window.open(mapUrl, '_blank')}
+                onClick={() => window.open(mapUrl, '_blank', 'noopener,noreferrer')}
               >
                 {/* Map Preview */}
                 <div className="relative h-48 bg-gradient-to-br from-primary/5 to-primary/10 overflow-hidden">

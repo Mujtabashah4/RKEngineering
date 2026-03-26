@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60">
+  <defs>
+    <!-- Industrial Green Gradient -->
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a5c3a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d7a4e;stop-opacity:1" />
+    </linearGradient>
+    <!-- Wheat Gold Accent -->
+    <linearGradient id="wheatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4a439;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8b84a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Logo Mark - Rounded Square with RK -->
+  <g transform="translate(5, 5)">
+    <!-- Background -->
+    <rect x="0" y="0" width="50" height="50" rx="8" ry="8" fill="url(#primaryGrad)"/>
+    <!-- Gold Border -->
+    <rect x="0" y="0" width="50" height="50" rx="8" ry="8" fill="none" stroke="url(#wheatGrad)" stroke-width="2"/>
+    <!-- RK Text -->
+    <text x="25" y="35"
+          font-family="Arial Black, Helvetica, sans-serif"
+          font-size="24"
+          font-weight="900"
+          fill="white"
+          text-anchor="middle"
+          letter-spacing="1">RK</text>
+    <!-- Wheat Accent Line -->
+    <rect x="10" y="42" width="30" height="2.5" rx="1" fill="url(#wheatGrad)"/>
+    <!-- Small Cog -->
+    <g transform="translate(42, 8)" fill="url(#wheatGrad)">
+      <circle cx="0" cy="0" r="4" fill="url(#wheatGrad)"/>
+      <circle cx="0" cy="0" r="1.5" fill="url(#primaryGrad)"/>
+      <rect x="-0.75" y="-6" width="1.5" height="3" rx="0.5"/>
+      <rect x="-0.75" y="3" width="1.5" height="3" rx="0.5"/>
+      <rect x="-6" y="-0.75" width="3" height="1.5" rx="0.5"/>
+      <rect x="3" y="-0.75" width="3" height="1.5" rx="0.5"/>
+    </g>
+  </g>
+
+  <!-- Company Name -->
+  <g transform="translate(65, 0)">
+    <!-- RK Engineering - Main Text -->
+    <text x="0" y="30"
+          font-family="Arial Black, Helvetica, sans-serif"
+          font-size="22"
+          font-weight="900"
+          fill="#1a5c3a"
+          letter-spacing="2">RK ENGINEERING</text>
+    <!-- Tagline -->
+    <text x="0" y="48"
+          font-family="Arial, Helvetica, sans-serif"
+          font-size="10"
+          font-weight="500"
+          fill="#6b7280"
+          letter-spacing="2">AGRICULTURAL MACHINERY</text>
+    <!-- Wheat Gold Underline -->
+    <rect x="0" y="52" width="120" height="2" rx="1" fill="url(#wheatGrad)"/>
+  </g>
+</svg>

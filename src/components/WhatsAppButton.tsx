@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const WhatsAppButton = () => {
   const handleClick = () => {
     const message = encodeURIComponent("Hello, I'm interested in RK Engineering products. Please provide more information.");
-    window.open(`https://wa.me/923097580000?text=${message}`, '_blank');
+    window.open(`https://wa.me/923097580000?text=${message}`, '_blank', 'noopener,noreferrer');
   };
 
   return (

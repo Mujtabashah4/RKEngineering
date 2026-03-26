@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import Logo from "./Logo";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,6 @@ const Navigation = () => {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, sectionId: string) => {
     e.preventDefault();
-    // Navigate to home first if not already there
     if (location.pathname !== '/') {
       navigate('/');
     }
@@ -52,51 +52,49 @@ const Navigation = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-        ? "bg-white/95 backdrop-blur-lg border-b border-border shadow-sm py-3"
-        : "bg-white/90 backdrop-blur-md border-b border-border/50 py-4"
-        }`}
+      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-white/95 backdrop-blur-xl border-b-2 border-border shadow-medium py-3"
+          : "bg-white/80 backdrop-blur-md border-b border-border/50 py-4"
+      }`}
     >
       <div className="container mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a 
-            href="/" 
+          <a
+            href="/"
             onClick={(e) => {
               e.preventDefault();
               navigate("/");
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="flex items-center gap-3 group cursor-pointer"
+            className="cursor-pointer"
           >
-            <div className="w-11 h-11 bg-primary rounded-xl flex items-center justify-center shadow-sm">
-              <span className="text-white font-black text-base">RK</span>
-            </div>
-            <div className="flex flex-col gap-0.5">
-              <div className="text-lg font-bold text-primary tracking-tight leading-tight">
-                RK Engineering
-              </div>
-              <div className="text-xs text-muted-foreground font-medium tracking-wide leading-tight">
-                Agricultural Machinery
-              </div>
-            </div>
+            <Logo variant="full" />
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <button
+          <div className="hidden md:flex items-center gap-1">
+            {navItems.map((item, idx) => (
+              <motion.button
                 key={item.label}
                 onClick={(e) => handleNavClick(e as any, item.sectionId)}
-                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors relative group py-2 cursor-pointer bg-transparent border-none"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + idx * 0.05 }}
+                className="nav-link-industrial text-sm text-foreground/70 hover:text-primary transition-colors px-4 py-2 cursor-pointer bg-transparent border-none"
               >
                 {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-              </button>
+              </motion.button>
             ))}
-            <Button 
-              onClick={(e) => {
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <Button
+                onClick={(e) => {
                   e.preventDefault();
                   if (location.pathname !== '/') {
                     navigate('/');
@@ -114,19 +112,43 @@ const Navigation = () => {
                     }
                   }, 100);
                 }}
-                className="bg-primary hover:bg-primary/90 text-white shadow-sm hover:shadow-md transition-all duration-300 px-6"
+                className="ml-4 bg-primary hover:bg-primary-light text-white shadow-industrial hover:shadow-elevated transition-all duration-300 px-6 font-display tracking-wider border-b-4 border-primary-light hover:-translate-y-0.5"
               >
                 Get Started
               </Button>
+            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
+          <motion.button
+            whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-foreground/70 hover:text-primary transition-colors"
+            className="md:hidden p-2 text-foreground/70 hover:text-primary transition-colors bg-white/50 rounded-lg border border-border"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+            <AnimatePresence mode="wait">
+              {isOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X className="w-6 h-6" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu className="w-6 h-6" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
         </div>
 
         {/* Mobile Navigation */}
@@ -136,48 +158,68 @@ const Navigation = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden bg-background/95 backdrop-blur-xl border-t border-border mt-4 rounded-2xl shadow-xl"
+              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="md:hidden overflow-hidden"
             >
-              <div className="flex flex-col p-6 gap-4">
-                {navItems.map((item) => (
-                  <button
-                    key={item.label}
-                    onClick={(e) => handleNavClick(e as any, item.sectionId)}
-                    className="text-lg font-medium text-foreground hover:text-primary transition-colors cursor-pointer bg-transparent border-none text-left w-full"
+              <div className="mt-4 bg-white/95 backdrop-blur-xl border-2 border-border border-b-4 rounded-xl shadow-elevated p-6">
+                <div className="flex flex-col gap-2">
+                  {navItems.map((item, idx) => (
+                    <motion.button
+                      key={item.label}
+                      onClick={(e) => handleNavClick(e as any, item.sectionId)}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.05 }}
+                      className="text-left text-lg font-body font-medium text-foreground hover:text-primary transition-colors cursor-pointer bg-transparent border-none py-3 px-4 rounded-lg hover:bg-primary/5"
+                    >
+                      {item.label}
+                    </motion.button>
+                  ))}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="mt-4 pt-4 border-t border-border"
                   >
-                    {item.label}
-                  </button>
-                ))}
-                <Button 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (location.pathname !== '/') {
-                      navigate('/');
-                    }
-                    setTimeout(() => {
-                      const element = document.getElementById('contact');
-                      if (element) {
-                        const offset = 100;
-                        const elementPosition = element.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - offset;
-                        window.scrollTo({
-                          top: offsetPosition,
-                          behavior: "smooth",
-                        });
-                      }
-                      setIsOpen(false);
-                    }, 100);
-                  }}
-                  className="w-full mt-2 bg-primary hover:bg-primary-light text-white rounded-xl py-6 text-lg"
-                >
-                  Get Started
-                </Button>
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (location.pathname !== '/') {
+                          navigate('/');
+                        }
+                        setTimeout(() => {
+                          const element = document.getElementById('contact');
+                          if (element) {
+                            const offset = 100;
+                            const elementPosition = element.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - offset;
+                            window.scrollTo({
+                              top: offsetPosition,
+                              behavior: "smooth",
+                            });
+                          }
+                          setIsOpen(false);
+                        }, 100);
+                      }}
+                      className="w-full bg-primary hover:bg-primary-light text-white shadow-industrial py-6 text-lg font-display tracking-wider border-b-4 border-primary-light"
+                    >
+                      Get Started
+                    </Button>
+                  </motion.div>
+                </div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
+
+      {/* Industrial Accent Line */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: scrolled ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-secondary to-transparent origin-center"
+      />
     </motion.nav>
   );
 };

@@ -1,11 +1,17 @@
-// Product images - Replace these URLs with actual product images
+// Product images - High resolution verified Unsplash images for agricultural machinery
 const productImages = {
-  superSeeder: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
-  rotavator: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
-  potatoGrader: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
-  discHarrow: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
-  chiselPlough: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
-  coldStorage: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
+  // Super Seeder - Green tractor on brown field by Randy Fath
+  superSeeder: "https://images.unsplash.com/photo-1594771804886-a933bb2d609b?w=800&q=80&auto=format&fit=crop",
+  // Rotavator - Red harvester machine in grain field
+  rotavator: "https://images.unsplash.com/photo-1530507629858-e4977d30e9e0?w=800&q=80&auto=format&fit=crop",
+  // Potato Grader - Agricultural sorting/vegetable processing
+  potatoGrader: "https://images.unsplash.com/photo-1597916829826-02e5bb4a54e0?w=800&q=80&auto=format&fit=crop",
+  // Disc Harrow - Wide farmland with tractor at golden hour
+  discHarrow: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80&auto=format&fit=crop",
+  // Chisel Plough - Tractor plowing agricultural field
+  chiselPlough: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=800&q=80&auto=format&fit=crop",
+  // Cold Storage - Industrial warehouse interior with metal shelving
+  coldStorage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80&auto=format&fit=crop",
 };
 
 export interface Product {

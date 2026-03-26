@@ -62,7 +62,7 @@ const Engineering = () => {
           className="text-center mb-16"
         >
           <div className="inline-block mb-4">
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2">
+            <div className="inline-flex items-center gap-2 bg-white/15 border-2 border-white/20 rounded-lg px-5 py-2">
               <Factory className="w-4 h-4 text-accent" />
               <span className="text-sm font-medium text-white">Manufacturing Excellence</span>
             </div>
@@ -90,7 +90,7 @@ const Engineering = () => {
               key={idx} 
               variants={item}
             >
-              <Card className="group relative bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all duration-300 p-6 h-full hover:shadow-xl">
+              <Card className="group relative bg-white/10 backdrop-blur-sm border-white/20 border-b-4 hover:bg-white/15 transition-all duration-300 p-6 h-full hover:shadow-xl">
                 {/* Icon */}
                 <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 shadow-md">
                   <feature.icon className="w-6 h-6 text-primary" />
@@ -130,7 +130,7 @@ const Engineering = () => {
               { value: "100%", label: "Quality Control" },
             ].map((stat, idx) => (
               <div key={idx} className="py-4">
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                <div className="font-display text-5xl text-white tracking-wider mb-2">
                   {stat.value}
                 </div>
                 <div className="text-sm text-white/80 font-medium">{stat.label}</div>

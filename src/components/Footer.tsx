@@ -1,4 +1,4 @@
-import { Leaf, MessageCircle } from "lucide-react";
+import { MessageCircle, Cog } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -88,12 +88,27 @@ const Footer = () => {
               transition={{ duration: 0.5 }}
               className="flex items-center gap-3 mb-4"
             >
-              <div className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/20">
-                <Leaf className="w-6 h-6 text-accent" />
+              <div className="relative">
+                <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center border-2 border-secondary/30">
+                  <span className="font-display text-lg text-white tracking-wider">RK</span>
+                  <div className="absolute bottom-1.5 left-2 right-2 h-0.5 bg-secondary/60 rounded-full" />
+                </div>
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                  className="absolute -top-1 -right-1"
+                >
+                  <div className="w-4 h-4 bg-secondary rounded-full flex items-center justify-center">
+                    <Cog className="w-3 h-3 text-primary" />
+                  </div>
+                </motion.div>
               </div>
               <div className="flex flex-col gap-0.5">
-                <div className="text-lg font-bold text-white leading-tight">RK Engineering</div>
-                <div className="text-xs text-white/70 leading-tight">Agricultural Machinery Manufacturing</div>
+                <div className="font-display text-lg text-white tracking-wider leading-tight">RK ENGINEERING</div>
+                <div className="flex items-center gap-2">
+                  <div className="h-0.5 w-4 bg-secondary rounded-full" />
+                  <span className="text-xs text-white/70 font-body tracking-wide uppercase">Agricultural Machinery</span>
+                </div>
               </div>
             </motion.div>
             <motion.p

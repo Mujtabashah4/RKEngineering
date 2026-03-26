@@ -78,7 +78,7 @@ const Subsidies = () => {
           <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-semibold">
             Government Subsidy Programs
           </Badge>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-6 tracking-tight">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl text-foreground mb-4 tracking-wide">
             Government Subsidy Programs
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-primary mt-3">
               Making Farm Mechanization Accessible
@@ -103,7 +103,7 @@ const Subsidies = () => {
                   <HandCoins className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold text-card-foreground mb-2">{program.name}</h3>
-                <div className="text-3xl font-bold text-primary mb-2">{program.coverage}</div>
+                <div className="stat-counter text-primary mb-2">{program.coverage}</div>
                 <p className="text-sm text-muted-foreground mb-4">Subsidy Coverage</p>
                 <div className="pt-4 border-t border-border">
                   <span className="text-xs text-muted-foreground">Maximum Benefit:</span>

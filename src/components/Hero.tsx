@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Phone, CheckCircle } from "lucide-react";
+import { ArrowRight, Phone, CheckCircle, Wheat, Cog, Factory } from "lucide-react";
 import heroImage from "@/assets/hero-machinery.jpg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -8,18 +8,18 @@ import { useRef } from "react";
 const Hero = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const imageRef = useRef<HTMLDivElement>(null);
-  
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const { scrollYProgress } = useScroll({
-    target: imageRef,
-    offset: ["start end", "end start"]
+    target: containerRef,
+    offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0.8]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
 
   const scrollToSection = (sectionId: string) => {
-    // Navigate to home first if not already there
     if (location.pathname !== '/') {
       navigate('/');
     }
@@ -37,107 +37,155 @@ const Hero = () => {
     }, 100);
   };
 
+  const stats = [
+    { value: "2,200+", label: "Machines Built", icon: Cog },
+    { value: "1,600+", label: "Super Seeders", icon: Wheat },
+    { value: "40+", label: "Cold Storage", icon: Factory },
+  ];
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-white via-green-50/30 to-white">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a7f4f_1px,transparent_1px),linear-gradient(to_bottom,#1a7f4f_1px,transparent_1px)] bg-[size:80px_80px]" />
+    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Warm Parchment Background with Mesh Gradient */}
+      <div className="absolute inset-0 gradient-hero" />
+      <div className="absolute inset-0 gradient-mesh" />
+
+      {/* Industrial Grid Pattern */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#2d5a3d_1px,transparent_1px),linear-gradient(to_bottom,#2d5a3d_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
 
-      {/* Subtle Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5" />
+      {/* Decorative Wheat Accent - Top Right */}
+      <motion.div
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 0.15, x: 0 }}
+        transition={{ duration: 1.2, delay: 0.5 }}
+        className="absolute top-20 right-0 w-96 h-96"
+      >
+        <div className="w-full h-full bg-gradient-to-bl from-[hsl(38,85%,52%)] to-transparent rounded-full blur-3xl" />
+      </motion.div>
+
+      {/* Decorative Green Accent - Bottom Left */}
+      <motion.div
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: 0.1, x: 0 }}
+        transition={{ duration: 1.2, delay: 0.7 }}
+        className="absolute bottom-0 left-0 w-[500px] h-[500px]"
+      >
+        <div className="w-full h-full bg-gradient-to-tr from-primary to-transparent rounded-full blur-3xl" />
+      </motion.div>
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-6 lg:px-12 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          
+      <div className="relative z-10 container mx-auto px-6 lg:px-12 py-24">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+
           {/* Left Column - Content */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            style={{ opacity }}
           >
-            {/* Company Logo Badge */}
+            {/* Company Badge - Industrial Style */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-full px-5 py-2 mb-6"
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="inline-flex items-center gap-4 mb-8"
             >
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-                <span className="text-white font-black text-sm">RK</span>
+              <div className="relative">
+                <div className="w-14 h-14 bg-primary rounded-lg flex items-center justify-center shadow-industrial rotate-3">
+                  <span className="text-white font-display text-xl tracking-wider">RK</span>
+                </div>
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="absolute -top-1 -right-1 w-4 h-4"
+                >
+                  <Cog className="w-4 h-4 text-secondary" />
+                </motion.div>
               </div>
-              <div className="text-left">
-                <div className="text-primary font-bold text-base leading-tight">RK ENGINEERING</div>
-                <div className="text-primary/60 text-xs font-medium">Est. in Agricultural Machinery</div>
+              <div className="text-left border-l-4 border-secondary pl-4">
+                <div className="font-display text-xl text-primary tracking-wider">RK Engineering</div>
+                <div className="text-sm text-muted-foreground font-body">Agricultural Machinery</div>
               </div>
             </motion.div>
 
-            {/* Main Heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+            {/* Main Heading - Bold Industrial Typography */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight"
+              transition={{ delay: 0.3, duration: 0.7 }}
+              className="mb-8"
             >
-              Manufacturing
-              <span className="block text-primary mt-2">Excellence</span>
-              <span className="block text-2xl md:text-3xl font-normal text-muted-foreground mt-3">
-                in Farm Mechanization
-              </span>
-            </motion.h1>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-foreground leading-[0.9] tracking-wide">
+                Manufacturing
+                <span className="block text-primary mt-2">Excellence</span>
+              </h1>
+              <div className="mt-6 flex items-center gap-4">
+                <div className="h-1 w-20 bg-secondary rounded-full" />
+                <span className="font-elegant text-2xl md:text-3xl text-muted-foreground italic normal-case">
+                  in Farm Mechanization
+                </span>
+              </div>
+            </motion.div>
 
             {/* Description */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl"
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="text-lg text-muted-foreground mb-10 leading-relaxed max-w-xl font-body"
             >
-              Leading manufacturer of agricultural machinery and farm mechanization equipment. 
-              Trusted by farmers and government institutions across Pakistan.
+              Pakistan's trusted manufacturer of agricultural machinery and farm mechanization equipment.
+              Government-approved supplier empowering farmers across the nation with precision-engineered solutions.
             </motion.p>
 
-            {/* Key Features */}
+            {/* Key Features - Industrial Tags */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="flex flex-wrap gap-4 mb-8"
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="flex flex-wrap gap-3 mb-10"
             >
               {[
                 "Government Approved",
                 "PCAP/AFMP Certified",
                 "2,200+ Machines Delivered"
               ].map((feature, idx) => (
-                <div key={idx} className="flex items-center gap-2 bg-white border border-border rounded-full px-4 py-2 shadow-sm">
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6 + idx * 0.1 }}
+                  className="flex items-center gap-2 bg-white/80 backdrop-blur-sm border-2 border-border border-b-4 rounded-lg px-4 py-2.5 shadow-soft hover:border-secondary transition-colors"
+                >
                   <CheckCircle className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-foreground">{feature}</span>
-                </div>
+                  <span className="text-sm font-body font-semibold text-foreground">{feature}</span>
+                </motion.div>
               ))}
             </motion.div>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Industrial Style */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
               className="flex flex-wrap gap-4"
             >
               <Button
                 size="lg"
                 onClick={() => scrollToSection('products')}
-                className="bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 text-base font-semibold"
+                className="bg-primary hover:bg-primary-light text-white shadow-industrial hover:shadow-elevated transition-all duration-300 px-8 py-7 text-lg font-display tracking-wider border-b-4 border-primary-light hover:-translate-y-1"
               >
                 Explore Products
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              
+
               <Button
                 size="lg"
                 variant="outline"
                 onClick={() => scrollToSection('contact')}
-                className="border-2 border-primary/20 text-primary hover:bg-primary/5 px-8 py-6 text-base font-semibold"
+                className="border-2 border-foreground/20 text-foreground hover:bg-foreground hover:text-background px-8 py-7 text-lg font-display tracking-wider transition-all duration-300 hover:-translate-y-1"
               >
                 <Phone className="mr-2 h-5 w-5" />
                 Contact Us
@@ -145,104 +193,99 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Image & Stats */}
+          {/* Right Column - Hero Image with Industrial Frame */}
           <motion.div
-            ref={imageRef}
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 1, delay: 0.3 }}
             className="relative"
-            style={{ y, opacity }}
+            style={{ y }}
           >
-            {/* Hero Image */}
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-border">
+            {/* Industrial Frame */}
+            <div className="relative">
+              {/* Decorative Corner Brackets */}
+              <div className="absolute -top-4 -left-4 w-16 h-16 border-t-4 border-l-4 border-secondary" />
+              <div className="absolute -top-4 -right-4 w-16 h-16 border-t-4 border-r-4 border-secondary" />
+              <div className="absolute -bottom-4 -left-4 w-16 h-16 border-b-4 border-l-4 border-secondary" />
+              <div className="absolute -bottom-4 -right-4 w-16 h-16 border-b-4 border-r-4 border-secondary" />
+
+              {/* Main Image Container */}
               <motion.div
-                className="relative w-full h-[500px] overflow-hidden"
-                animate={{
-                  scale: [1, 1.05, 1],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+                className="relative overflow-hidden rounded-lg shadow-elevated"
+                style={{ scale }}
               >
                 <motion.img
                   src={heroImage}
-                  alt="Agricultural machinery"
-                  className="w-full h-full object-cover"
+                  alt="Agricultural machinery in action"
+                  className="w-full h-[300px] sm:h-[400px] md:h-[480px] lg:h-[550px] object-cover"
                   animate={{
-                    x: [0, -15, 0],
-                    scale: [1, 1.02, 1],
+                    scale: [1, 1.03, 1],
                   }}
                   transition={{
-                    duration: 6,
+                    duration: 10,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
                 />
-                {/* Motion blur effect overlay - simulating speed */}
+
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" />
+
+                {/* Animated Machinery Effect */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none"
+                  className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary/20 to-transparent"
                   animate={{
-                    x: ["-100%", "100%"],
+                    opacity: [0.3, 0.5, 0.3],
                   }}
                   transition={{
                     duration: 3,
                     repeat: Infinity,
-                    ease: "linear",
+                    ease: "easeInOut",
                   }}
                 />
+
+                {/* Label Badge */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1 }}
+                  className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-lg shadow-medium"
+                >
+                  <div className="font-display text-sm text-primary tracking-wider">Super Seeder</div>
+                  <div className="text-xs text-muted-foreground font-body">Precision Agriculture</div>
+                </motion.div>
               </motion.div>
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent pointer-events-none" />
-              
-              {/* Animated dust/particles effect - simulating movement */}
-              <motion.div
-                className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-primary/10 via-transparent to-transparent pointer-events-none"
-                animate={{
-                  opacity: [0.3, 0.6, 0.3],
-                  height: [60, 80, 60],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-              
-              {/* Additional movement lines */}
-              <motion.div
-                className="absolute bottom-10 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent pointer-events-none"
-                animate={{
-                  x: ["-100%", "100%"],
-                  opacity: [0, 0.5, 0],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              />
             </div>
 
-            {/* Stats Overlay */}
+            {/* Stats Cards - Floating Below Image */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="mt-6 w-full"
+              transition={{ delay: 0.9, duration: 0.6 }}
+              className="mt-8"
             >
-              <div className="bg-white rounded-2xl shadow-2xl border border-border p-4 md:p-6">
-                <div className="grid grid-cols-3 gap-2 md:gap-4 text-center">
-                  {[
-                    { value: "1,600+", label: "Super Seeders" },
-                    { value: "300+", label: "Rotavators" },
-                    { value: "40+", label: "Cold Storage" },
-                  ].map((stat, idx) => (
-                    <div key={idx} className="border-r last:border-r-0 border-border/50 px-2">
-                      <div className="text-xl md:text-2xl lg:text-3xl font-bold text-primary">{stat.value}</div>
-                      <div className="text-[10px] md:text-xs text-muted-foreground font-medium mt-1 leading-tight">{stat.label}</div>
-                    </div>
+              <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-elevated border-2 border-border border-b-4 p-6">
+                <div className="grid grid-cols-3 gap-4">
+                  {stats.map((stat, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1 + idx * 0.15 }}
+                      className="text-center relative"
+                    >
+                      {idx > 0 && (
+                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-px h-12 bg-border" />
+                      )}
+                      <motion.div
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        className="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center mx-auto mb-2"
+                      >
+                        <stat.icon className="w-5 h-5 text-secondary" />
+                      </motion.div>
+                      <div className="stat-counter text-primary">{stat.value}</div>
+                      <div className="text-xs text-muted-foreground font-body mt-1">{stat.label}</div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -258,17 +301,24 @@ const Hero = () => {
         transition={{ delay: 1.5 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-xs text-muted-foreground font-medium">Scroll to explore</span>
+        <div className="flex flex-col items-center gap-3">
+          <span className="text-xs text-muted-foreground font-body font-medium tracking-wider uppercase">Scroll to explore</span>
           <motion.div
-            animate={{ y: [0, 8, 0] }}
+            animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-5 h-8 border-2 border-primary/30 rounded-full flex items-start justify-center p-1"
+            className="w-6 h-10 border-2 border-primary/30 rounded-full flex items-start justify-center p-1.5"
           >
-            <div className="w-1 h-2 bg-primary rounded-full" />
+            <motion.div
+              animate={{ height: [8, 16, 8] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-1.5 bg-secondary rounded-full"
+            />
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Industrial Bottom Border */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-secondary to-transparent" />
     </section>
   );
 };

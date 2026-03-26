@@ -7,11 +7,17 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+
+# Build output
 dist
 dist-ssr
-*.local
+
+# Vite
 .vite
+vite.config.ts.timestamp*
+*.local
 
 # Environment variables
 .env
@@ -24,12 +30,14 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# macOS
+.DS_Store
 
 # Database files
 *.db
@@ -41,4 +49,10 @@ yarn.lock
 
 # Vercel
 .vercel
+
+# Claude Code
+.claude
+
+# OG image source (PNG in public/ is the output)
+og-image.svg
 

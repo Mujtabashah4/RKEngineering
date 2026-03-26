@@ -1,44 +1,50 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
-    <linearGradient id="rkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#16a34a;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:1" />
+    <!-- Industrial Green Gradient -->
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a5c3a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d7a4e;stop-opacity:1" />
+    </linearGradient>
+    <!-- Wheat Gold Accent -->
+    <linearGradient id="wheatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4a439;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8b84a;stop-opacity:1" />
     </linearGradient>
   </defs>
-  
-  <!-- Background Circle with Leaf Green Gradient -->
-  <circle cx="50" cy="50" r="48" fill="url(#rkGrad)"/>
-  
-  <!-- Leaf Shape -->
-  <path d="M 50 25 Q 60 25 65 35 Q 70 45 68 55 Q 66 65 58 70 Q 50 75 42 70 Q 34 65 32 55 Q 30 45 35 35 Q 40 25 50 25 Z" 
-        fill="white" 
-        opacity="0.9"/>
-  
-  <!-- Leaf Vein -->
-  <path d="M 50 30 L 50 68" 
-        stroke="url(#rkGrad)" 
-        stroke-width="2" 
-        fill="none"/>
-  
-  <!-- Small Veins -->
-  <path d="M 50 40 Q 45 42 42 45" 
-        stroke="url(#rkGrad)" 
-        stroke-width="1.5" 
-        fill="none"
-        opacity="0.7"/>
-  <path d="M 50 50 Q 45 52 43 55" 
-        stroke="url(#rkGrad)" 
-        stroke-width="1.5" 
-        fill="none"
-        opacity="0.7"/>
-  <path d="M 50 40 Q 55 42 58 45" 
-        stroke="url(#rkGrad)" 
-        stroke-width="1.5" 
-        fill="none"
-        opacity="0.7"/>
-  <path d="M 50 50 Q 55 52 57 55" 
-        stroke="url(#rkGrad)" 
-        stroke-width="1.5" 
-        fill="none"
-        opacity="0.7"/>
+
+  <!-- Background - Rounded Square (Industrial Shape) -->
+  <rect x="4" y="4" width="92" height="92" rx="12" ry="12" fill="url(#primaryGrad)"/>
+
+  <!-- Industrial Border -->
+  <rect x="4" y="4" width="92" height="92" rx="12" ry="12" fill="none" stroke="url(#wheatGrad)" stroke-width="3"/>
+
+  <!-- Gear Teeth (Subtle Background Element) -->
+  <g opacity="0.15" fill="white">
+    <rect x="45" y="2" width="10" height="8" rx="2"/>
+    <rect x="45" y="90" width="10" height="8" rx="2"/>
+    <rect x="2" y="45" width="8" height="10" rx="2"/>
+    <rect x="90" y="45" width="8" height="10" rx="2"/>
+  </g>
+
+  <!-- RK Monogram -->
+  <text x="50" y="62"
+        font-family="Arial Black, Helvetica, sans-serif"
+        font-size="42"
+        font-weight="900"
+        fill="white"
+        text-anchor="middle"
+        letter-spacing="2">RK</text>
+
+  <!-- Wheat Accent Line (Bottom) -->
+  <rect x="20" y="75" width="60" height="4" rx="2" fill="url(#wheatGrad)"/>
+
+  <!-- Small Cog Icon (Top Right Corner) -->
+  <g transform="translate(75, 20)" fill="url(#wheatGrad)">
+    <circle cx="0" cy="0" r="6" fill="url(#wheatGrad)"/>
+    <circle cx="0" cy="0" r="2.5" fill="url(#primaryGrad)"/>
+    <rect x="-1" y="-9" width="2" height="4" rx="0.5"/>
+    <rect x="-1" y="5" width="2" height="4" rx="0.5"/>
+    <rect x="-9" y="-1" width="4" height="2" rx="0.5"/>
+    <rect x="5" y="-1" width="4" height="2" rx="0.5"/>
+  </g>
 </svg>
