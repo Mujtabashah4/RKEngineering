@@ -198,7 +198,7 @@ const Contact = () => {
                     <div className="flex-1">
                       <h3 className="font-semibold text-card-foreground mb-1 group-hover:text-primary transition-colors">Visit Us</h3>
                       <p className="text-sm text-card-foreground font-medium mb-1">
-                        2-KM Deplapur Road, Pull Dolay Wala
+                        2-KM Depalpur Road, Pull Dolay Wala
                       </p>
                       <p className="text-sm text-card-foreground font-medium">
                         Kasur, Pakistan
