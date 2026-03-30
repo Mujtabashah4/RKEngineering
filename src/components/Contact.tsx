@@ -43,8 +43,15 @@ const Contact = () => {
       icon: Phone,
       title: "Call Us",
       details: "03097580000",
-      subdetails: "Mon-Sat, 9AM-6PM",
+      subdetails: "03004890663",
       link: "tel:03097580000",
+    },
+    {
+      icon: Phone,
+      title: "Call Us (Alt)",
+      details: "03004890663",
+      subdetails: "Mon-Sat, 9AM-6PM",
+      link: "tel:03004890663",
     },
     {
       icon: Mail,
@@ -191,7 +198,7 @@ const Contact = () => {
                     <div className="flex-1">
                       <h3 className="font-semibold text-card-foreground mb-1 group-hover:text-primary transition-colors">Visit Us</h3>
                       <p className="text-sm text-card-foreground font-medium mb-1">
-                        2-KM Dipal Pur Road Pull Dolawala
+                        2-KM Deplapur Road, Pull Dolay Wala
                       </p>
                       <p className="text-sm text-card-foreground font-medium">
                         Kasur, Pakistan
